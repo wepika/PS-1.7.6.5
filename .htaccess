@@ -11,7 +11,7 @@ RewriteEngine on
 
 
 #Domain: localhost
-RewriteRule . - [E=REWRITEBASE:/sandbox/1.7.6.5/]
+RewriteRule . - [E=REWRITEBASE:/]
 RewriteRule ^api(?:/(.*))?$ %{ENV:REWRITEBASE}webservice/dispatcher.php?url=$1 [QSA,L]
 
 # Images
@@ -58,6 +58,6 @@ AddType font/woff2 .woff2
 </IfModule>
 
 #If rewrite mod isn't enabled
-ErrorDocument 404 /sandbox/1.7.6.5/index.php?controller=404
+ErrorDocument 404 /index.php?controller=404
 
 # ~~end~~ Do not remove this comment, Prestashop will keep automatically the code outside this comment when .htaccess will be generated again

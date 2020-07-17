@@ -1,37 +1,29 @@
 version: '2'
 
 volumes:
-    db-data:
     vendor:
     var:
+    cd_ps_sandbox_1765.sql.gz:
 
 services:
     mysql:
         image: mysql:5
         ports:
-            - "3306"
+            - "3306:3306"
         volumes:
-            - db-data:/var/lib/mysql
+            - ./cd_ps_sandbox_1765.sql.gz:/docker-entrypoint-initdb.d/cd_ps_sandbox_1765.sql.gz:ro
         environment:
-            MYSQL_ROOT_PASSWORD: password
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
             MYSQL_DATABASE: prestashop
         restart: always
     apache:
-        container_name: prestashop-git
-        image: prestashop/prestashop-git:7
+        container_name: prestashop
+        image: prestashop/base:7.2-apache
         environment:
-            PS_INSTALL_AUTO: 1
-            DB_PASSWD: password
-            DB_NAME: prestashop
-            DB_SERVER: mysql
-            PS_DOMAIN: localhost:8001
-            PS_FOLDER_INSTALL: install-dev
-            PS_FOLDER_ADMIN: admin-dev
+            PS_INSTALL_AUTO: 0
         ports:
-            - "8001:80"
+            - "80:80"
         volumes:
             - ./:/var/www/html/:delegated
-            - vendor:/var/www/html/vendor
-            - var:/var/www/html/var
         restart: always
 
