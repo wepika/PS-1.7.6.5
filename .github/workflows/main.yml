@@ -19,21 +19,21 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+
     services:
-      mysql:  
+      mysql:
         image: mysql
         ports:
           - 3306:3306
         env:
           MYSQL_DATABASE: ${{env.DB_NAME}}
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-      prestashop/base:  
+      prestashop/base:
         image: prestashop/base:7.2-apache
         ports:
           - 8080:80
         volumes:
-            - ${{env.GITHUB_WORKSPACE}}:/var/www/html/:delegated
+            - $(pwd):/var/www/html/:delegated
             - vendor:/var/www/html/vendor
             - var:/var/www/html/var
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -48,9 +48,9 @@ jobs:
 
     - name: composer install
       run: composer install --no-interaction --no-progress --no-scripts -o --ansi
-      
+
     - name: Phplint
       run: ./vendor/bin/phplint ./classes
-      
+
     - name: Replace config
       run: envsubst < /app/config/parameters.php.dist > /app/config/parameters.php
