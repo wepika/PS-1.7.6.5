@@ -30,4 +30,6 @@ jobs:
     - name: composer install
       run: composer install --no-interaction --no-progress --no-scripts -o --ansi
       
+    - uses: michaelw90/PHP-Lint@master
+      
     
