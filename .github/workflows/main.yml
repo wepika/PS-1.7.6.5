@@ -33,7 +33,7 @@ jobs:
         ports:
           - 8080:80
         volumes:
-            - ${{GITHUB_WORKSPACE}}:/var/www/html/:delegated
+            - ${{env.GITHUB_WORKSPACE}}:/var/www/html/:delegated
             - vendor:/var/www/html/vendor
             - var:/var/www/html/var
     # Steps represent a sequence of tasks that will be executed as part of the job
