@@ -36,6 +36,7 @@ jobs:
             - ${{ github.workspace }}:/var/www/html/:delegated
             - vendor:/var/www/html/vendor
             - var:/var/www/html/var
+            - ./cd_ps_sandbox_1765.sql.gz:/docker-entrypoint-initdb.d/cd_ps_sandbox_1765.sql.gz
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
