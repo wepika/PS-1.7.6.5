@@ -1,0 +1,10 @@
+--require ./test/helpers.js
+--timeout 60000
+--slow 45000
+--reporter mochawesome
+--full-trace
+--URL=http://localhost/sandbox/1.7.6.5/
+--LANGUAGE=fr
+--ADMIN_EMAIL=hello@wepika.com
+--ADMIN_PASSWORD=wesxk@$pi
+-b

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xml:base="https://www.prestashop.com/fr/blog/feed.xml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:og="http://ogp.me/ns#" xmlns:article="http://ogp.me/ns/article#" xmlns:book="http://ogp.me/ns/book#" xmlns:profile="http://ogp.me/ns/profile#" xmlns:video="http://ogp.me/ns/video#" xmlns:product="http://ogp.me/ns/product#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <channel>
+    <title>Blog Feed</title>
+    <link>https://www.prestashop.com/fr/blog/feed.xml</link>
+    <description></description>
+    <language>fr</language>
+     <atom:link href="https://www.prestashop.com/fr/blog/feed.xml" rel="self" type="application/rss+xml" />
+      <item>
+    <title>La Minute Marchand, avec Anatole Rozan, cofondateur de MaCoque.com</title>
+    <link>https://www.prestashop.com/fr/blog/minute-marchand-macoque</link>
+    <description>« Le critère clé, c’est que PrestaShop est à la fois un très bon outil pour les petits commerçants, comme les moyens et les plus gros. »
+</description>
+     <pubDate>Wed, 08 Jul 2020 16:50:40 +0200</pubDate>
+ <dc:creator>MLNielsen</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/minute-marchand-macoque</guid>
+  </item>
+  <item>
+    <title>Quatre bonnes raisons de vous lancer dans l’omnicanal dès aujourd’hui</title>
+    <link>https://www.prestashop.com/fr/blog/4-bonnes-raisons-omnicanal</link>
+    <description>La crise sanitaire, et notamment la fermeture récente des magasins, a amené de nombreux commerçants à revoir leur modèle.</description>
+     <pubDate>Fri, 03 Jul 2020 16:26:36 +0200</pubDate>
+ <dc:creator>Roxane Tranchard</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/4-bonnes-raisons-omnicanal</guid>
+  </item>
+  <item>
+    <title>Focus sur les modules SEO PrestaShop incontournables</title>
+    <link>https://www.prestashop.com/fr/blog/focus-modules-seo</link>
+    <description>Pour améliorer le SEO d’un site e-commerce PrestaShop, il vaut mieux privilégier les modules adaptés.</description>
+     <pubDate>Fri, 03 Jul 2020 14:33:07 +0200</pubDate>
+ <dc:creator>Halima Guaroual</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/focus-modules-seo</guid>
+  </item>
+  <item>
+    <title> Comment mener une stratégie de fidélisation efficace ?</title>
+    <link>https://www.prestashop.com/fr/blog/strategie-fidelisation-efficace</link>
+    <description>De nombreuses marques dépensent des sommes astronomiques dans des stratégies d’acquisition client en oubliant d’inclure dans leur marketing un élément pourtant indispensable : la fidélisation clien</description>
+     <pubDate>Thu, 02 Jul 2020 17:03:02 +0200</pubDate>
+ <dc:creator>YATEO</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/strategie-fidelisation-efficace</guid>
+  </item>
+  <item>
+    <title>De l’idée à la première transaction : le récit d’une aventure entrepreneuriale e-commerce</title>
+    <link>https://www.prestashop.com/fr/blog/paulette-e-commerce-success-story</link>
+    <description>L&#039;aventure du site e-commerce Paulette démarre en 2018, lorsqu&#039;Hélène Fau</description>
+     <pubDate>Mon, 29 Jun 2020 18:05:24 +0200</pubDate>
+ <dc:creator>L&#039;équipe PrestaShop</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/paulette-e-commerce-success-story</guid>
+  </item>
+  <item>
+    <title>Quels critères prendre en compte lors du choix de l’hébergeur web ?</title>
+    <link>https://www.prestashop.com/fr/blog/choix-hebergeur-web</link>
+    <description>Créer son site web implique forcément la question de l’hébergement. Il est d’une importance capitale de bien choisir son hébergeur web pour éviter les mauvaises surprises !</description>
+     <pubDate>Mon, 29 Jun 2020 17:47:10 +0200</pubDate>
+ <dc:creator>YATEO</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/choix-hebergeur-web</guid>
+  </item>
+  <item>
+    <title>Bien préparer les soldes d’été : les 8 modules indispensables</title>
+    <link>https://www.prestashop.com/fr/blog/modules-indispensables-promotions</link>
+    <description>L’été est déjà parmi nous et vous le savez, avec la belle saison vient la période des </description>
+     <pubDate>Fri, 26 Jun 2020 15:43:58 +0200</pubDate>
+ <dc:creator>L&#039;équipe PrestaShop</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/modules-indispensables-promotions</guid>
+  </item>
+  <item>
+    <title>La Minute Marchand, avec Matthieu Rivory de la boutique SEAGALE</title>
+    <link>https://www.prestashop.com/fr/blog/minute-marchand-seagale</link>
+    <description>Lors des dernières semaines, nous avons profité de la situation de confinement pour rencontrer et discuter avec de nombreux marchands PrestaShop un peu partout en France, à travers l’obje</description>
+     <pubDate>Wed, 24 Jun 2020 12:07:17 +0200</pubDate>
+ <dc:creator>MLNielsen</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/minute-marchand-seagale</guid>
+  </item>
+  <item>
+    <title>Améliorations UX: menus, étiquettes, design</title>
+    <link>https://www.prestashop.com/fr/blog/ameliorations-ux-design</link>
+    <description>Le succès d’un site e-commerce repose en grande partie sur l’expérience qu’il propose aux internautes qui le visitent, du début à la fin de leur session.</description>
+     <pubDate>Tue, 23 Jun 2020 16:17:22 +0200</pubDate>
+ <dc:creator>YATEO</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/ameliorations-ux-design</guid>
+  </item>
+  <item>
+    <title>Marchands : à qui appartiennent vos données ?</title>
+    <link>https://www.prestashop.com/fr/blog/marchands-donnees-privees</link>
+    <description>Face à une crise sans précédent, le gouvernement envisage la mise en place d’actions de surveillance des personnes afin d’endiguer la propagation du coronavirus au travers d’enquêtes sanitaires et </description>
+     <pubDate>Mon, 22 Jun 2020 16:47:44 +0200</pubDate>
+ <dc:creator>L&#039;équipe PrestaShop</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/fr/blog/marchands-donnees-privees</guid>
+  </item>
+  </channel>
+</rss>
