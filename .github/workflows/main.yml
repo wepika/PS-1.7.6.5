@@ -29,7 +29,7 @@ jobs:
           MYSQL_DATABASE: ${{env.DB_NAME}}
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         volumes:  
-          - ./cd_ps_sandbox_1765.sql.gz:/docker-entrypoint-initdb.d/cd_ps_sandbox_1765.sql.gz:ro
+          - ${{ github.workspace }}/cd_ps_sandbox_1765.sql.gz:/docker-entrypoint-initdb.d/cd_ps_sandbox_1765.sql.gz:ro
       prestashop/base:
         image: prestashop/base:7.2-apache
         ports:
