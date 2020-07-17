@@ -29,15 +29,13 @@ jobs:
           MYSQL_DATABASE: ${{env.DB_NAME}}
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         volumes:  
-          - cd_ps_sandbox_1765.sql.gz:/docker-entrypoint-initdb.d/cd_ps_sandbox_1765.sql.gz
+          - ./cd_ps_sandbox_1765.sql.gz:/docker-entrypoint-initdb.d/cd_ps_sandbox_1765.sql.gz:ro
       prestashop/base:
         image: prestashop/base:7.2-apache
         ports:
           - 8080:80
         volumes:
             - ${{ github.workspace }}:/var/www/html/:delegated
-            - vendor:/var/www/html/vendor
-            - var:/var/www/html/var
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
