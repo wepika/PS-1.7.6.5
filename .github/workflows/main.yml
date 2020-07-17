@@ -26,3 +26,8 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.2'
+
+    - name: composer install
+      run: composer install --no-interaction --no-progress --no-scripts -o --ansi
+      
+    
