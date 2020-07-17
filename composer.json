@@ -157,6 +157,9 @@
     },
     "classmap": ["app/AppKernel.php", "app/AppCache.php"]
   },
+  "require-dev": {
+    "overtrue/phplint": "^2.0"
+  },
   "scripts": {
     "post-install-cmd": [
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
