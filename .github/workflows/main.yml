@@ -51,3 +51,6 @@ jobs:
       
     - name: Phplint
       run: ./vendor/bin/phplint ./classes
+      
+    - name: Replace config
+      run: envsubst < /app/config/parameters.php.dist > /app/config/parameters.php
