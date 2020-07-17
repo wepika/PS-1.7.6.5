@@ -22,8 +22,8 @@ jobs:
         image: mysql
         ports:
           - 3306:3306
-      nginx:  
-        image: nginx
+      httpd:  
+        image: httpd:2.4
         ports:
           - 8080:80
     # Steps represent a sequence of tasks that will be executed as part of the job
