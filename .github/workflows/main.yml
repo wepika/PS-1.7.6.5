@@ -55,12 +55,12 @@ jobs:
     - name: Replace config
       run: envsubst < ./app/config/parameters.php.dist > ./app/config/parameters.php
 
-    # - name: Database migration fixture
-    #  run: mysql -h 127.0.0.1 ${{env.DB_NAME}} < "update ps_shop_url set physical_uri = '/'";
-    #
-    # - uses: mysql
-    #   with:
-    #    sql: update ps_shop_url set physical_uri = '/'
+    - name: Database migration fixture
+      run: mysql -h 127.0.0.1 ${{env.DB_NAME}} < "update ps_shop_url set physical_uri = '/'";
     
-    # - name: request homepage
-    #   run: curl -v -L http://localhost
+    - uses: mysql
+      with:
+        sql: update ps_shop_url set physical_uri = '/'
+    
+    - name: request homepage
+      run: curl -v -L http://localhost
