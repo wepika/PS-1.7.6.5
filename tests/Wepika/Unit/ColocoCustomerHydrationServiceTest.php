@@ -3,29 +3,28 @@
 namespace Tests\Wepika\Unit;
 
 use PHPUnit\Framework\TestCase;
+use WpkColoco\Model\ColocoCustomer;
+use WpkColoco\Service\ColocoCustomer\ColocoCustomerHydrationService;
+use WpkColoco\Wepika\OrkardApi\Entity\OrkardCustomer;
 
 class ColocoCustomerHydrationServiceTest extends TestCase
 {
-    public function testCanBeCreatedFromValidEmailAddress()
+    public function testColocoCustomerCanBeHydratedWithOneProperty()
     {
-        $this->assertInstanceOf(
-            Email::class,
-            Email::fromString('user@example.com')
+        $colocoCustomerHydrationService = new ColocoCustomerHydrationService();
+        $colocoCustomer = $colocoCustomerHydrationService->hydrateFromOrkardCustomer(
+            new ColocoCustomer(),
+            $this->getOrkardCustomerWithOnePropertySet()
         );
+
+        $this->assertEquals('Antoine', $colocoCustomer->nom);
     }
 
-    public function testCannotBeCreatedFromInvalidEmailAddress()
+    private function getOrkardCustomerWithOnePropertySet()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $orkardCustomer = new OrkardCustomer();
+        $orkardCustomer->setNom('Antoine');
 
-        Email::fromString('invalid');
-    }
-
-    public function testCanBeUsedAsString()
-    {
-        $this->assertEquals(
-            'user@example.com',
-            Email::fromString('user@example.com')
-        );
+        return $orkardCustomer;
     }
 }
