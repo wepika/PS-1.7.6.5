@@ -1,0 +1,70 @@
+.wpkcoloco .card {
+    align-self: flex-start;
+    margin: 0 50px 0 0;
+}
+
+.wpkcoloco .card img {
+    display: block;
+    box-shadow: 0 0 50px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    height: auto;
+    max-width: 100%;
+}
+
+.wpkcoloco .card .slider-points {
+    background: rgba(0, 0, 0, .5);
+    height: 10px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 95%;
+    transition: width .6s ease;
+}
+
+.wpkcoloco .card .slider-points .indicator{
+    background-color: #007bff;
+}
+.wpkcoloco .card .slider-points .indicator .total-points {
+    padding: 10px 5px;
+    position: absolute;
+    background: #eb5b25;
+    color: #fff;
+    display: block;
+    top: -50px;
+    font-weight: 700;
+    border-radius: 5px;
+}
+
+.wpkcoloco .total-points:before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(45deg);
+    background: #eb5b25;
+}
+
+.wpkcoloco .request_card_form {
+    width: 100%;
+    max-width: 650px;
+}
+
+.wpkcoloco_stores_list {
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 2rem;
+}
+
+#request_a_card{
+    margin: 1rem;
+}
+
+.wpkcoloco_advantage {
+    border: black solid 1px;
+    padding: 1.8rem;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,15 @@
+{shop_url}
+
+Bonjour {firstname} {lastname},
+
+Demande de carte Coloco sur {shop_name}
+
+Vous avez demandé à lier une carte Coloco sur {shop_name}.
+
+Pour confirmer cette action , cliquez sur le lien suivant :{verification_link}
+
+Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail.
+
+[{shop_name}]({shop_url})
+
+Powered by [PrestaShop](https://www.prestashop.com/?utm_source=marchandprestashop&utm_medium=e-mail=utm_campaign=footer_1-7)
