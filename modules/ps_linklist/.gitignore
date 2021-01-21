@@ -1,0 +1,7 @@
+/config_*.xml
+/translations/*.php
+/node_modules
+/vendor
+/views/node_modules
+!vendor/index.php
+!vendor/.htaccess

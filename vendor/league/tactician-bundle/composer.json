@@ -1,0 +1,63 @@
+{
+  "name" : "league/tactician-bundle",
+  "description" : "Bundle to integrate Tactician with Symfony projects",
+  "type" : "symfony-bundle",
+  "authors" : [
+    {
+        "name": "Rafael Dohms",
+        "homepage": "http://doh.ms"
+    },
+    {
+        "name": "Richard Tuin",
+        "homepage": "http://www.rtuin.nl/"
+    },
+    {
+        "name" : "Xander Smalbil",
+        "email" : "xander@videofunk.nl"
+    },
+    {
+        "name": "Ross Tuck",
+        "email": "me@rosstuck.com"
+    }
+  ],
+  "keywords" : [
+    "tactician",
+    "bundle",
+    "symfony"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+    "php":  ">=5.5",
+    "league/tactician": "^1.0",
+    "symfony/config": "^2.3|^3.0",
+    "symfony/dependency-injection": "^2.3|^3.0",
+    "symfony/http-kernel": "^2.3|^3.0",
+    "symfony/yaml": "^2.3|^3.0"
+  },
+  "minimum-stability": "beta",
+  "suggest": {
+    "symfony/validator": "For command validator middleware",
+    "league/tactician-doctrine": "For doctrine transaction middleware"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "League\\Tactician\\Bundle\\" : ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.5",
+    "mockery/mockery": "~0.9.4",
+    "matthiasnoback/symfony-config-test": "~1.0",
+    "matthiasnoback/symfony-dependency-injection-test": "^0.7",
+
+    "symfony/validator": "^2.3|^3.0",
+    "league/tactician-doctrine": "^1.0"
+  }
+}

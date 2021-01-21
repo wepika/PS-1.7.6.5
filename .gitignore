@@ -11,9 +11,7 @@ download/*
 /img/*
 /log/*
 /upload/*
-vendor/*
 docs/phpdoc-sf/
-composer.lock
 tests/Selenium/errorShots/
 tests/Selenium/errorDumps/
 
