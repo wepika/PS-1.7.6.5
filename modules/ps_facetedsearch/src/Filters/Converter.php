@@ -1,27 +1,21 @@
 <?php
 /**
- * 2007-2019 PrestaShop.
+ * Copyright since 2007 PrestaShop SA and Contributors
+ * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
  * NOTICE OF LICENSE
  *
  * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
+ * that is bundled with this package in the file LICENSE.md.
  * It is also available through the world-wide-web at this URL:
  * https://opensource.org/licenses/AFL-3.0
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@prestashop.com so we can send you a copy immediately.
  *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to http://www.prestashop.com for more information.
- *
  * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2019 PrestaShop SA
+ * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
  */
 
 namespace PrestaShop\Module\FacetedSearch\Filters;
@@ -34,10 +28,10 @@ use Db;
 use Feature;
 use FeatureValue;
 use Manufacturer;
+use PrestaShop\Module\FacetedSearch\URLSerializer;
 use PrestaShop\PrestaShop\Core\Product\Search\Facet;
 use PrestaShop\PrestaShop\Core\Product\Search\Filter;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
-use PrestaShop\PrestaShop\Core\Product\Search\URLFragmentSerializer;
 use Tools;
 
 class Converter
@@ -72,10 +66,16 @@ class Converter
      */
     protected $database;
 
-    public function __construct(Context $context, Db $database)
+    /**
+     * @var URLSerializer
+     */
+    protected $urlSerializer;
+
+    public function __construct(Context $context, Db $database, URLSerializer $urlSerializer)
     {
         $this->context = $context;
         $this->database = $database;
+        $this->urlSerializer = $urlSerializer;
     }
 
     public function getFacetsFromFilterBlocks(array $filterBlocks)
@@ -137,13 +137,13 @@ class Converter
                     }
 
                     if ((int) $filterBlock['filter_show_limit'] !== 0) {
-                        usort($filters, array($this, 'sortFiltersByMagnitude'));
+                        usort($filters, [$this, 'sortFiltersByMagnitude']);
                     }
 
                     $this->hideZeroValuesAndShowLimit($filters, (int) $filterBlock['filter_show_limit']);
 
                     if ((int) $filterBlock['filter_show_limit'] !== 0 || $filterBlock['type'] !== self::TYPE_ATTRIBUTE_GROUP) {
-                        usort($filters, array($this, 'sortFiltersByLabel'));
+                        usort($filters, [$this, 'sortFiltersByLabel']);
                     }
 
                     // No method available to add all filters
@@ -225,8 +225,7 @@ class Converter
             GROUP BY `type`, id_value ORDER BY position ASC'
         );
 
-        $urlSerializer = new URLFragmentSerializer();
-        $facetAndFiltersLabels = $urlSerializer->unserialize($query->getEncodedFacets());
+        $facetAndFiltersLabels = $this->urlSerializer->unserialize($query->getEncodedFacets());
         foreach ($filters as $filter) {
             $filterLabel = $this->convertFilterTypeToLabel($filter['type']);
 
@@ -309,7 +308,7 @@ class Converter
                             && isset($facetAndFiltersLabels[$feature['name']])
                         ) {
                             $featureValueLabels = $facetAndFiltersLabels[$feature['name']];
-                            $featureValues = FeatureValue::getFeatureValuesWithLang($idLang, $feature['id_feature']);
+                            $featureValues = FeatureValue::getFeatureValuesWithLang($idLang, $feature['id_feature'], true);
                             foreach ($featureValues as $featureValue) {
                                 if (in_array($featureValue['value'], $featureValueLabels)) {
                                     $searchFilters['id_feature'][$feature['id_feature']][] =
@@ -350,7 +349,7 @@ class Converter
                 case self::TYPE_CATEGORY:
                     if (isset($facetAndFiltersLabels[$filterLabel])) {
                         foreach ($facetAndFiltersLabels[$filterLabel] as $queryFilter) {
-                            $categories = Category::searchByNameAndParentCategoryId($idLang, $queryFilter, $idParent);
+                            $categories = Category::searchByName($idLang, $queryFilter, true);
                             if ($categories) {
                                 $searchFilters[$filter['type']][] = $categories['id_category'];
                             }

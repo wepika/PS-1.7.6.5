@@ -1,33 +1,26 @@
 <?php
 /**
- * 2007-2019 PrestaShop.
+ * Copyright since 2007 PrestaShop SA and Contributors
+ * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
  *
  * NOTICE OF LICENSE
  *
  * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.txt.
+ * that is bundled with this package in the file LICENSE.md.
  * It is also available through the world-wide-web at this URL:
  * https://opensource.org/licenses/AFL-3.0
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@prestashop.com so we can send you a copy immediately.
  *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to http://www.prestashop.com for more information.
- *
  * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2019 PrestaShop SA
+ * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- * International Registered Trademark & Property of PrestaShop SA
  */
 
 namespace PrestaShop\Module\FacetedSearch\Product;
 
 use Configuration;
-use Context;
 use PrestaShop\Module\FacetedSearch\Filters;
 use PrestaShop\Module\FacetedSearch\URLSerializer;
 use PrestaShop\PrestaShop\Core\Product\Search\Facet;
@@ -38,7 +31,6 @@ use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchProviderInterface;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchResult;
 use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
-use PrestaShop\PrestaShop\Core\Product\Search\URLFragmentSerializer;
 use Ps_Facetedsearch;
 use Tools;
 
@@ -57,16 +49,23 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
     /**
      * @var URLSerializer
      */
-    private $facetsSerializer;
+    private $urlSerializer;
+
+    /**
+     * @var SearchFactory
+     */
+    private $searchFactory;
 
     public function __construct(
         Ps_Facetedsearch $module,
         Filters\Converter $converter,
-        URLSerializer $serializer
+        URLSerializer $serializer,
+        SearchFactory $searchFactory = null
     ) {
         $this->module = $module;
         $this->filtersConverter = $converter;
-        $this->facetsSerializer = $serializer;
+        $this->urlSerializer = $serializer;
+        $this->searchFactory = $searchFactory === null ? new SearchFactory() : $searchFactory;
     }
 
     /**
@@ -74,6 +73,7 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
      */
     private function getAvailableSortOrders()
     {
+        $sortSalesDesc = new SortOrder('product', 'sales', 'desc');
         $sortPosAsc = new SortOrder('product', 'position', 'asc');
         $sortNameAsc = new SortOrder('product', 'name', 'asc');
         $sortNameDesc = new SortOrder('product', 'name', 'desc');
@@ -82,6 +82,9 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
         $translator = $this->module->getTranslator();
 
         return [
+            $sortSalesDesc->setLabel(
+                $translator->trans('Best sellers', [], 'Modules.Facetedsearch.Shop')
+            ),
             $sortPosAsc->setLabel(
                 $translator->trans('Relevance', [], 'Modules.Facetedsearch.Shop')
             ),
@@ -115,7 +118,7 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
         $facetedSearchFilters = $this->filtersConverter->createFacetedSearchFiltersFromQuery($query);
 
         $context = $this->module->getContext();
-        $facetedSearch = new Search($context);
+        $facetedSearch = $this->searchFactory->build($context);
         // init the search with the initial population associated with the current filters
         $facetedSearch->initSearch($facetedSearchFilters);
 
@@ -180,7 +183,9 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
         $facetCollection = new FacetCollection();
         $nextMenu = $facetCollection->setFacets($facets);
         $result->setFacetCollection($nextMenu);
-        $result->setEncodedFacets($this->facetsSerializer->serialize($facets));
+
+        $facetFilters = $this->urlSerializer->getActiveFacetFiltersFromFacets($facets);
+        $result->setEncodedFacets($this->urlSerializer->serialize($facetFilters));
 
         return $result;
     }
@@ -376,8 +381,7 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
     private function addEncodedFacetsToFilters(array $facets)
     {
         // first get the currently active facetFilter in an array
-        $originalFacetFilters = $this->facetsSerializer->getActiveFacetFiltersFromFacets($facets);
-        $urlSerializer = new URLFragmentSerializer();
+        $originalFacetFilters = $this->urlSerializer->getActiveFacetFiltersFromFacets($facets);
 
         foreach ($facets as $facet) {
             $activeFacetFilters = $originalFacetFilters;
@@ -388,7 +392,7 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
                 foreach ($facet->getFilters() as $filter) {
                     if ($filter->isActive()) {
                         // we have a currently active filter is the facet, remove it from the facetFilter array
-                        $activeFacetFilters = $this->facetsSerializer->removeFilterFromFacetFilters(
+                        $activeFacetFilters = $this->urlSerializer->removeFilterFromFacetFilters(
                             $originalFacetFilters,
                             $filter,
                             $facet
@@ -401,13 +405,13 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
             foreach ($facet->getFilters() as $filter) {
                 // toggle the current filter
                 if ($filter->isActive() || $facet->getProperty('range')) {
-                    $facetFilters = $this->facetsSerializer->removeFilterFromFacetFilters(
+                    $facetFilters = $this->urlSerializer->removeFilterFromFacetFilters(
                         $activeFacetFilters,
                         $filter,
                         $facet
                     );
                 } else {
-                    $facetFilters = $this->facetsSerializer->addFilterToFacetFilters(
+                    $facetFilters = $this->urlSerializer->addFilterToFacetFilters(
                         $activeFacetFilters,
                         $filter,
                         $facet
@@ -418,7 +422,7 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
                 // returns the "URL" for the search when user has toggled
                 // the filter.
                 $filter->setNextEncodedFacets(
-                    $urlSerializer->serialize($facetFilters)
+                    $this->urlSerializer->serialize($facetFilters)
                 );
             }
         }
