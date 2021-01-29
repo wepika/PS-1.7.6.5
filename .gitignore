@@ -51,6 +51,7 @@ modules/ps_banner/img/*
 /themes/classic
 
 # Vendors and dependencies
+vendor/*
 
 bower_components/
 node_modules/
