@@ -67,6 +67,9 @@ jobs:
       uses: overtrue/phplint@master
       with:
         configuration: ./.phplint.yml
+        
+    - name: Phpunit
+      run: ./vendor/bin/phpunit --bootstrap tests/Wepika/Unit/autoload.php tests/Wepika/Unit
 
     - name: Replace config
       run: envsubst < ./app/config/parameters.php.dist > ./app/config/parameters.php
