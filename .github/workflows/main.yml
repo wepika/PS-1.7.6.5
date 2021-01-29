@@ -66,8 +66,7 @@ jobs:
     - name: Phplint
       uses: overtrue/phplint@master
       with:
-        path: ./classes
-        options: --exclude=*.log
+        configuration: ./.phplint.yml
 
     - name: Replace config
       run: envsubst < ./app/config/parameters.php.dist > ./app/config/parameters.php
