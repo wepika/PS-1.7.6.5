@@ -55,16 +55,19 @@ jobs:
     - name: Cache Composer Directory
       uses: actions/cache@v2
       with:
-            path: ${{ steps.composer-cache.outputs.dir }}
-            key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-            restore-keys: |
-                ${{ runner.os }}-composer-
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+            ${{ runner.os }}-composer-
 
     - name: composer install
       run: composer install --no-interaction --no-progress --no-scripts -o --ansi
 
     - name: Phplint
-      run: sudo ./vendor/bin/phplint ./classes
+      uses: overtrue/phplint@master
+      with:
+        path: ./classes
+        options: --exclude=*.log
 
     - name: Replace config
       run: envsubst < ./app/config/parameters.php.dist > ./app/config/parameters.php
