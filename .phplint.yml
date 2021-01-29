@@ -1,0 +1,20 @@
+path: .
+jobs: 10
+extensions:
+  - php
+exclude:
+  - app
+  - bin
+  - config
+  - docs
+  - img
+  - js
+  - localization
+  - mails
+  - pdf
+  - src
+  - themes
+  - tools
+  - translations
+  - var
+  - vendor
