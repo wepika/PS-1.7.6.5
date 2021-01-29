@@ -64,9 +64,7 @@ jobs:
       run: composer install --no-interaction --no-progress --no-scripts -o --ansi
 
     - name: Phplint
-      uses: overtrue/phplint@master
-      with:
-        configuration: ./.phplint.yml
+      run: ./vendor/bin/phplint .
         
     - name: Phpunit
       run: ./vendor/bin/phpunit --bootstrap tests/Wepika/Unit/autoload.php tests/Wepika/Unit
