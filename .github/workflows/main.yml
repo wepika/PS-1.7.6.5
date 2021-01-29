@@ -47,9 +47,6 @@ jobs:
         php-version: '7.2'
         extensions: mbstring, intl, gd, xml, dom, json, fileinfo, curl, zip, iconv
 
-    - name: composer install
-      run: composer install --no-interaction --no-progress --no-scripts -o --ansi
-    
     - name: Get Composer Cache Directory
       id: composer-cache
       run: |
@@ -62,6 +59,9 @@ jobs:
             key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
             restore-keys: |
                 ${{ runner.os }}-composer-
+
+    - name: composer install
+      run: composer install --no-interaction --no-progress --no-scripts -o --ansi
 
     - name: Phplint
       run: sudo ./vendor/bin/phplint ./classes
