@@ -51,7 +51,7 @@ jobs:
       run: composer install --no-interaction --no-progress --no-scripts -o --ansi
 
     - name: Phplint
-      run: ./vendor/bin/phplint ./classes
+      run: sudo ./vendor/bin/phplint ./classes
 
     - name: Replace config
       run: envsubst < ./app/config/parameters.php.dist > ./app/config/parameters.php
