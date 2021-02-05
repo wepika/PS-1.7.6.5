@@ -1,5 +1,6 @@
 <?php
 
+namespace Tests\Wepika\Unit;
 
 use PHPUnit\Framework\TestCase;
 use WpkColoco\Wepika\Formatter\AddressFormatter;
