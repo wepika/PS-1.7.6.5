@@ -202,7 +202,8 @@
     ],
     "create-release": "@php tools/build/CreateRelease.php",
     "git-hook-install": "@php .github/contrib/install.php",
-    "git-hook-uninstall": "@php .github/contrib/uninstall.php"
+    "git-hook-uninstall": "@php .github/contrib/uninstall.php",
+    "wepika-unit-test": "phpunit --bootstrap tests\\Wepika\\Unit\\autoload.php tests\\Wepika\\Unit"
   },
   "config": {
     "platform": {
