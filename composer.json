@@ -118,6 +118,7 @@
   ],
   "require-dev": {
     "behat/behat": "^3.5",
+    "codeception/codeception": "^4.1",
     "friendsofphp/php-cs-fixer": "^2.12",
     "johnkary/phpunit-speedtrap": "^1.1",
     "mikey179/vfsstream": "^1.6",
